@@ -1,0 +1,39 @@
+# Local config (provider mappings — never commit, cf. METHODOLOGY §7.3)
+*.local.json
+provider_mapping.local.json
+providers.local.json
+
+# Secrets
+.env
+.env.*
+
+# Raw data with provider names in clear
+raw/
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build / temp
+*.log
+*.tmp
+.coverage
+htmlcov/
