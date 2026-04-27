@@ -1,9 +1,10 @@
-provider_id,n_observations,g_score_mean,flag_rate,composite,rating,tier,trend,color,trend_color,methodology_version
-P-002,780,0.9120,0.0372,0.9374,A,Production grade,n/a,#6F9E85,#CCCCCC,v1.0
-P-001,780,0.9091,0.0769,0.9161,BBB,Production grade,n/a,#75BC5B,#CCCCCC,v1.0
-P-004,781,0.9077,0.0896,0.9090,BBB,Production grade,n/a,#75BC5B,#CCCCCC,v1.0
-P-003,782,0.8998,0.1419,0.8789,BB,Governance-required,n/a,#8EB848,#CCCCCC,v1.0
-P-005,782,0.8886,0.2148,0.8369,B,Governance-required,n/a,#CE842D,#CCCCCC,v1.0
+provider_id,n_observations,g_score_mean,flag_rate,composite,rating,tier,trend,color,trend_color,hallucination_rate,methodology_version
+P-002,780,0.9120,0.0372,0.9374,A,Production grade,n/a,#6F9E85,#CCCCCC,0.4013,v1.0
+P-001,780,0.9091,0.0769,0.9161,BBB,Production grade,n/a,#75BC5B,#CCCCCC,0.5430,v1.0
+P-004,781,0.9077,0.0896,0.9090,BBB,Production grade,n/a,#75BC5B,#CCCCCC,0.5570,v1.0
+P-003,782,0.8998,0.1419,0.8789,BB,Governance-required,n/a,#8EB848,#CCCCCC,0.6432,v1.0
+P-005,782,0.8886,0.2148,0.8369,B,Governance-required,n/a,#CE842D,#CCCCCC,0.6445,v1.0
+
 
 Dataset v1-2026-04-26
 =====================
