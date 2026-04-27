@@ -120,7 +120,7 @@ L'éventuelle évolution vers une cartographie nominative sera publiée comme Me
 
 NeoMundi mesure, atteste, transmet. La gouvernance reste la responsabilité de celui qui opère le service. La cartographie est partielle par construction et provisoire par honnêteté — elle couvre un ensemble fini de services à un instant daté, et l'instrument progresse par paliers versionnés.
 
-NeoMundi Recherche, association loi 1901, est hébergée à Vannes, France. Elle publie la cartographie et ne vend rien. Les activités commerciales dérivées sont portées par une entité juridique distincte (Louis M Sàrl, Morges, Suisse) qui n'intervient qu'auprès des utilisateurs de services génératifs, et jamais auprès des providers mesurés.
+NeoMundi Recherche, association loi 1901, est hébergée à Paris, France. Elle publie la cartographie et ne vend rien. Les activités commerciales dérivées sont portées par une entité juridique distincte (Louis M Sàrl, Morges, Suisse).
 
 ## Comment citer
 
