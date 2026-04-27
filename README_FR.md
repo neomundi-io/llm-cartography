@@ -16,25 +16,25 @@ NeoMundi ne mesure pas le modèle. NeoMundi mesure le service. L'unité de mesur
 
 Le dépôt rassemble deux exercices distincts, construits sur le même corpus et la même instrumentation.
 
-Le premier exercice évalue l'instrument. Pour chaque service mesuré, la corrélation entre la signature thermodynamique (G-Score, ΔG) et la véracité factuelle jugée par un tiers indépendant est calculée. La question posée est : l'instrument NeoMundi détecte-t-il, par la seule signature thermodynamique et sans lecture sémantique, une dérive corrélée à l'hallucination factuelle ?
+Le premier exercice établit la **cartographie** : les distributions de G-Score, ΔG et taux de FLAG des cinq services mesurés, présentées côte à côte sur le même corpus. Cette carte est la première publication publique de NeoMundi sur le paysage génératif.
 
-Le second exercice établit la cartographie. Les distributions de G-Score, ΔG et taux de flag des cinq services mesurés sont présentées côte à côte sur le même corpus. Cette carte est la première publication publique de NeoMundi sur le paysage génératif.
+Le second exercice évalue **la performance de l'instrument** : pour chaque FLAG levé par NeoMundi, la corrélation avec la véracité factuelle jugée par un tiers indépendant (GPT-4o sur TruthfulQA) est calculée. La question posée est : l'instrument détecte-t-il, par la seule signature thermodynamique et sans lecture sémantique, une dérive corrélée à l'hallucination factuelle ?
 
 ## Services mesurés en v1.0
 
 Les cinq services sont anonymisés par défaut. Chaque service est identifié par un identifiant anonyme stable (P-001 à P-005). Les noms réels des providers ne sont pas divulgués.
 
-## Notations — v1-2026-04-26
+## Cartographie — v1-2026-04-26
 
-Les premières notes runtime jamais publiées. Calculées de manière déterministe à partir de `measurements.csv` avec `methodology.py` (Méthodologie v1.0, Public Draft).
+Notes runtime calculées de manière déterministe à partir de `measurements.csv` avec `methodology.py` (Méthodologie v1.0, Public Draft). Le **taux d'hallucination** mesure la part de réponses jugées factuellement incorrectes par GPT-4o sur le corpus TruthfulQA.
 
-| Provider | Observations | G-Score | Taux FLAG | Composite | Note    | Tier                | Tendance |
-|----------|-------------:|--------:|----------:|----------:|---------|---------------------|----------|
-| P-002    |          780 |  0,9120 |   3,72 %  |    0,9374 | ![A](https://img.shields.io/badge/A-6F9E85?style=flat)   | Production grade    | n/a      |
-| P-001    |          780 |  0,9091 |   7,69 %  |    0,9161 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a      |
-| P-004    |          781 |  0,9077 |   8,96 %  |    0,9090 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a      |
-| P-003    |          782 |  0,8998 |  14,19 %  |    0,8789 | ![BB](https://img.shields.io/badge/BB-8EB848?style=flat)  | Governance-required | n/a      |
-| P-005    |          782 |  0,8886 |  21,48 %  |    0,8369 | ![B](https://img.shields.io/badge/B-CE842D?style=flat)   | Governance-required | n/a      |
+| Provider | Observations | G-Score | Taux FLAG | Composite | Note    | Tier                | Tendance | Taux d'hallucination |
+|----------|-------------:|--------:|----------:|----------:|---------|---------------------|----------|---------------------:|
+| P-002    |          780 |  0,9120 |   3,72 %  |    0,9374 | ![A](https://img.shields.io/badge/A-6F9E85?style=flat)   | Production grade    | n/a      |              40,1 %  |
+| P-001    |          780 |  0,9091 |   7,69 %  |    0,9161 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a      |              54,3 %  |
+| P-004    |          781 |  0,9077 |   8,96 %  |    0,9090 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a      |              55,7 %  |
+| P-003    |          782 |  0,8998 |  14,19 %  |    0,8789 | ![BB](https://img.shields.io/badge/BB-8EB848?style=flat)  | Governance-required | n/a      |              64,3 %  |
+| P-005    |          782 |  0,8886 |  21,48 %  |    0,8369 | ![B](https://img.shields.io/badge/B-CE842D?style=flat)   | Governance-required | n/a      |              64,5 %  |
 
 > **Conclusion principale.** *Aucun LLM observé n'atteint AA sans gouvernance runtime.*
 
@@ -47,16 +47,37 @@ La tendance est `n/a` pour ce jeu de données car il s'agit d'une mesure synchro
 python methodology.py        # lance les tests de référence sur le jeu de données
 ```
 
-Les deux dimensions brutes (G-Score, taux de FLAG) et la note agglomérée sont toutes affichées. Le composite est recalculable à partir des deux dimensions, et la note à partir du composite via le tableau des seuils de [`Methodologie_FR.md`](./Methodologie_FR.md) §4.2.
-
-- *Correct answers : proportion validée par LLM-as-judge (GPT-4o).*
-- *Précision NeoMundi : fiabilité des flags (proportion de FLAG correctement positionnés sur des réponses incorrectes).*
-- *Recall : proportion d'erreurs effectivement détectées par NeoMundi.*
-- *Observability (ΔG) : signal de dérive thermodynamique mesuré.*
-
 [Statistiques agrégées →](./data/v1-2026-04-26/summary.csv) · [Provenance et DOI →](./data/v1-2026-04-26/PROVENANCE.txt)
 
-Les cinq services ont été mesurés dans la même fenêtre temporelle, sur le corpus TruthfulQA, avec le même juge tiers (GPT-4o) et la même instrumentation.
+## Calibration de l'instrument — v1-2026-04-26
+
+Les métriques ci-dessous ne caractérisent pas les LLM mesurés : elles caractérisent **la performance de l'instrument NeoMundi** à détecter les hallucinations factuelles. Calculées sur 3 904 mesures TruthfulQA, vérité-terrain établie par un juge LLM externe (GPT-4o, voir [`Methodologie_FR.md`](./Methodologie_FR.md) §7.2).
+
+> **Quand NeoMundi flag, il a raison ≈ 76 % du temps.**
+> **Recall actuel ≈ 15 %.** L'instrument est calibré conservateur : il privilégie la précision sur la couverture. Mieux vaut moins flagger mais flagger juste, qu'inonder de faux positifs.
+>
+> **Module Vérité actif le 27 mai 2026** — vérification factuelle au-delà de la cohérence.
+
+| Provider | Observations | TP  | FP  | TN   | FN  | Précision | Recall  | F1     | Lift  |
+|----------|-------------:|----:|----:|-----:|----:|----------:|--------:|-------:|------:|
+| P-005    |          782 | 137 |  31 |  247 | 367 |   81,5 %  | 27,2 %  | 40,8 % | ×1,27 |
+| P-003    |          782 |  85 |  26 |  253 | 418 |   76,6 %  | 16,9 %  | 27,7 % | ×1,19 |
+| P-004    |          781 |  52 |  18 |  328 | 383 |   74,3 %  | 12,0 %  | 20,6 % | ×1,33 |
+| P-001    |          779 |  40 |  19 |  337 | 383 |   67,8 %  |  9,5 %  | 16,6 % | ×1,25 |
+| P-002    |          780 |  17 |  12 |  455 | 296 |   58,6 %  |  5,4 %  |  9,9 % | ×1,46 |
+| **GLOBAL** |    **3 904** | **331** | **106** | **1 620** | **1 847** | **75,7 %** | **15,2 %** | **25,3 %** | **×1,36** |
+
+**Définitions.**
+- **TP** (True Positive) : NeoMundi flag, et la réponse est effectivement factuellement incorrecte.
+- **FP** (False Positive) : NeoMundi flag, mais la réponse est correcte (fausse alerte).
+- **TN** (True Negative) : NeoMundi laisse passer (PASS), et la réponse est correcte.
+- **FN** (False Negative) : NeoMundi laisse passer, mais la réponse est incorrecte (hallucination ratée).
+- **Précision** = TP / (TP + FP) : fiabilité d'un FLAG.
+- **Recall** = TP / (TP + FN) : couverture sur les hallucinations totales.
+- **F1** : moyenne harmonique précision/recall.
+- **Lift** = Précision / Taux d'hallucination du provider : multiplicateur de détection vs hasard.
+
+[Métriques de calibration agrégées →](./data/v1-2026-04-26/calibration.csv)
 
 ## Anonymisation
 
@@ -91,7 +112,8 @@ L'éventuelle évolution vers une cartographie nominative sera publiée comme Me
 └── data/
     └── v1-2026-04-26/
         ├── PROVENANCE.txt       ← provenance et DOI Zenodo du dataset
-        └── summary.csv          ← statistiques agrégées par provider anonyme
+        ├── summary.csv          ← cartographie : statistiques agrégées par service
+        └── calibration.csv      ← calibration : performance de l'instrument
 ```
 
 ## Posture
