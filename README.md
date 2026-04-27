@@ -120,7 +120,7 @@ Any future evolution toward a nominative cartography will be published as a date
 
 NeoMundi measures, attests, transmits. Governance remains the responsibility of those who operate the service. The cartography is partial by construction and provisional by honesty — it covers a finite set of services at a dated moment, and the instrument progresses through versioned increments.
 
-NeoMundi Recherche, a French not-for-profit association (loi 1901), is based in Vannes, France. It publishes the cartography and sells nothing. Derived commercial activities are carried by a separate legal entity (Louis M Sàrl, Morges, Switzerland) which engages only with users of generative services, and never with measured providers.
+NeoMundi Recherche, a French not-for-profit association (loi 1901), is based in Paris, France. It publishes the cartography and sells nothing. Derived commercial activities are carried by a separate legal entity (Louis M Sàrl, Morges, Switzerland).
 
 ## How to cite
 
