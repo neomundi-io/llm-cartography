@@ -30,13 +30,15 @@ Les premières notes runtime jamais publiées. Calculées de manière détermini
 
 | Provider | Observations | G-Score | Taux FLAG | Composite | Note    | Tier                | Tendance |
 |----------|-------------:|--------:|----------:|----------:|---------|---------------------|----------|
-| P-002    |          780 |  0,9120 |   3,72 %  |    0,9374 | **A**   | Production grade    | n/a      |
-| P-001    |          780 |  0,9091 |   7,69 %  |    0,9161 | **BBB** | Production grade    | n/a      |
-| P-004    |          781 |  0,9077 |   8,96 %  |    0,9090 | **BBB** | Production grade    | n/a      |
-| P-003    |          782 |  0,8998 |  14,19 %  |    0,8789 | **BB**  | Governance-required | n/a      |
-| P-005    |          782 |  0,8886 |  21,48 %  |    0,8369 | **B**   | Governance-required | n/a      |
+| P-002    |          780 |  0,9120 |   3,72 %  |    0,9374 | ![A](https://img.shields.io/badge/A-6F9E85?style=flat)   | Production grade    | n/a      |
+| P-001    |          780 |  0,9091 |   7,69 %  |    0,9161 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a      |
+| P-004    |          781 |  0,9077 |   8,96 %  |    0,9090 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a      |
+| P-003    |          782 |  0,8998 |  14,19 %  |    0,8789 | ![BB](https://img.shields.io/badge/BB-8EB848?style=flat)  | Governance-required | n/a      |
+| P-005    |          782 |  0,8886 |  21,48 %  |    0,8369 | ![B](https://img.shields.io/badge/B-CE842D?style=flat)   | Governance-required | n/a      |
 
 > **Conclusion principale.** *Aucun LLM observé n'atteint AA sans gouvernance runtime.*
+
+La couleur de chaque note suit la convention colorimétrique fixée dans la méthodologie ([§6](./Methodologie_FR.md#6-convention-colorimétrique)) : un chemin perceptuellement uniforme dans l'espace CIE Lab 1976 dont l'inflection chaud → froid tombe par construction à la frontière de tier (BB → BBB). Lire le tableau ne nécessite aucune légende : les notes froides sont *Production grade*, les notes chaudes sont *Governance-required*.
 
 La tendance est `n/a` pour ce jeu de données car il s'agit d'une mesure synchrone, pas d'un flux runtime continu. La tendance (Stable / Positive / Négative) sera renseignée dès que l'instrument tournera sur du trafic de production sur une fenêtre suffisante.
 
@@ -52,7 +54,7 @@ Les deux dimensions brutes (G-Score, taux de FLAG) et la note agglomérée sont 
 - *Recall : proportion d'erreurs effectivement détectées par NeoMundi.*
 - *Observability (ΔG) : signal de dérive thermodynamique mesuré.*
 
-[Mesures brutes complètes →](./data/v1-2026-04-26) · [Statistiques agrégées →](./data/v1-2026-04-26/summary.csv)
+[Statistiques agrégées →](./data/v1-2026-04-26/summary.csv) · [Provenance et DOI →](./data/v1-2026-04-26/PROVENANCE.txt)
 
 Les cinq services ont été mesurés dans la même fenêtre temporelle, sur le corpus TruthfulQA, avec le même juge tiers (GPT-4o) et la même instrumentation.
 
