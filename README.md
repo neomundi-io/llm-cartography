@@ -16,25 +16,25 @@ NeoMundi does not measure the model. NeoMundi measures the service. The unit of 
 
 The repository brings together two distinct exercises, built on the same corpus and the same instrumentation.
 
-The first exercise evaluates the instrument. For each measured service, the correlation between the thermodynamic signature (G-Score, ΔG) and the factual truthfulness judged by an independent third party is computed. The question asked is: does the NeoMundi instrument detect, through thermodynamic signature alone and without semantic reading, a drift correlated with factual hallucination?
+The first exercise establishes the **cartography**: distributions of G-Score, ΔG and FLAG rate of the five measured services, presented side by side on the same corpus. This map is NeoMundi's first public publication on the generative landscape.
 
-The second exercise establishes the cartography. The distributions of G-Score, ΔG and FLAG rate of the five measured services are presented side by side on the same corpus. This map is NeoMundi's first public publication on the generative landscape.
+The second exercise evaluates **the performance of the instrument**: for each FLAG raised by NeoMundi, the correlation with factual truthfulness judged by an independent third party (GPT-4o on TruthfulQA) is computed. The question asked is: does the instrument detect, through thermodynamic signature alone and without semantic reading, a drift correlated with factual hallucination?
 
 ## Services measured in v1.0
 
 The five services are anonymized by default. Each service is identified by a stable anonymous identifier (P-001 to P-005). The real names of providers are not disclosed.
 
-## Ratings — v1-2026-04-26
+## Cartography — v1-2026-04-26
 
-The first runtime ratings ever published. Computed deterministically from `measurements.csv` with `methodology.py` (Methodology v1.0, Public Draft).
+Runtime ratings computed deterministically from `measurements.csv` with `methodology.py` (Methodology v1.0, Public Draft). The **hallucination rate** measures the share of responses judged factually incorrect by GPT-4o on the TruthfulQA corpus.
 
-| Provider | Observations | G-Score | FLAG rate | Composite | Rating  | Tier                | Trend |
-|----------|-------------:|--------:|----------:|----------:|---------|---------------------|-------|
-| P-002    |          780 |  0.9120 |   3.72 %  |    0.9374 | ![A](https://img.shields.io/badge/A-6F9E85?style=flat)   | Production grade    | n/a   |
-| P-001    |          780 |  0.9091 |   7.69 %  |    0.9161 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a   |
-| P-004    |          781 |  0.9077 |   8.96 %  |    0.9090 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a   |
-| P-003    |          782 |  0.8998 |  14.19 %  |    0.8789 | ![BB](https://img.shields.io/badge/BB-8EB848?style=flat)  | Governance-required | n/a   |
-| P-005    |          782 |  0.8886 |  21.48 %  |    0.8369 | ![B](https://img.shields.io/badge/B-CE842D?style=flat)   | Governance-required | n/a   |
+| Provider | Observations | G-Score | FLAG rate | Composite | Rating  | Tier                | Trend | Hallucination rate |
+|----------|-------------:|--------:|----------:|----------:|---------|---------------------|-------|-------------------:|
+| P-002    |          780 |  0.9120 |   3.72 %  |    0.9374 | ![A](https://img.shields.io/badge/A-6F9E85?style=flat)   | Production grade    | n/a   |              40.1 % |
+| P-001    |          780 |  0.9091 |   7.69 %  |    0.9161 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a   |              54.3 % |
+| P-004    |          781 |  0.9077 |   8.96 %  |    0.9090 | ![BBB](https://img.shields.io/badge/BBB-75BC5B?style=flat) | Production grade    | n/a   |              55.7 % |
+| P-003    |          782 |  0.8998 |  14.19 %  |    0.8789 | ![BB](https://img.shields.io/badge/BB-8EB848?style=flat)  | Governance-required | n/a   |              64.3 % |
+| P-005    |          782 |  0.8886 |  21.48 %  |    0.8369 | ![B](https://img.shields.io/badge/B-CE842D?style=flat)   | Governance-required | n/a   |              64.5 % |
 
 > **Headline finding.** *No observed LLM reaches AA without runtime governance.*
 
@@ -47,16 +47,37 @@ The trend is `n/a` for this dataset because it is a synchronous measurement, not
 python methodology.py        # runs reference tests on the dataset
 ```
 
-The two raw dimensions (G-Score, FLAG rate) and the agglomerated rating are all displayed. The composite is recomputable from the two dimensions, and the rating from the composite via the threshold table in [`Methodology_EN.md`](./Methodology_EN.md) §4.2.
-
-- *Correct answers: proportion validated by LLM-as-judge (GPT-4o).*
-- *NeoMundi precision: reliability of flags (proportion of FLAGs correctly positioned on incorrect responses).*
-- *Recall: proportion of errors effectively detected by NeoMundi.*
-- *Observability (ΔG): measured thermodynamic drift signal.*
-
 [Aggregated statistics →](./data/v1-2026-04-26/summary.csv) · [Provenance and DOI →](./data/v1-2026-04-26/PROVENANCE.txt)
 
-The five services were measured in the same temporal window, on the TruthfulQA corpus, with the same third-party judge (GPT-4o) and the same instrumentation.
+## Instrument calibration — v1-2026-04-26
+
+The metrics below do not characterize the measured LLMs: they characterize **the performance of the NeoMundi instrument** at detecting factual hallucinations. Computed on 3,904 TruthfulQA measurements, ground truth established by an external LLM judge (GPT-4o, see [`Methodology_EN.md`](./Methodology_EN.md) §7.2).
+
+> **When NeoMundi flags, it's right ≈ 76% of the time.**
+> **Current recall ≈ 15%.** The instrument is calibrated conservatively: it favors precision over coverage. Better to flag less but flag right than flood with false positives.
+>
+> **Truth Module live on May 27, 2026** — factual verification beyond coherence.
+
+| Provider | Observations | TP  | FP  | TN   | FN  | Precision | Recall  | F1     | Lift  |
+|----------|-------------:|----:|----:|-----:|----:|----------:|--------:|-------:|------:|
+| P-005    |          782 | 137 |  31 |  247 | 367 |   81.5 %  | 27.2 %  | 40.8 % | ×1.27 |
+| P-003    |          782 |  85 |  26 |  253 | 418 |   76.6 %  | 16.9 %  | 27.7 % | ×1.19 |
+| P-004    |          781 |  52 |  18 |  328 | 383 |   74.3 %  | 12.0 %  | 20.6 % | ×1.33 |
+| P-001    |          779 |  40 |  19 |  337 | 383 |   67.8 %  |  9.5 %  | 16.6 % | ×1.25 |
+| P-002    |          780 |  17 |  12 |  455 | 296 |   58.6 %  |  5.4 %  |  9.9 % | ×1.46 |
+| **GLOBAL** |    **3,904** | **331** | **106** | **1,620** | **1,847** | **75.7 %** | **15.2 %** | **25.3 %** | **×1.36** |
+
+**Definitions.**
+- **TP** (True Positive): NeoMundi flags, and the response is factually incorrect.
+- **FP** (False Positive): NeoMundi flags, but the response is correct (false alarm).
+- **TN** (True Negative): NeoMundi passes (PASS), and the response is correct.
+- **FN** (False Negative): NeoMundi passes, but the response is incorrect (missed hallucination).
+- **Precision** = TP / (TP + FP): reliability of a FLAG.
+- **Recall** = TP / (TP + FN): coverage on all hallucinations.
+- **F1**: harmonic mean of precision and recall.
+- **Lift** = Precision / Provider hallucination rate: detection multiplier vs random.
+
+[Aggregated calibration metrics →](./data/v1-2026-04-26/calibration.csv)
 
 ## Anonymization
 
@@ -91,7 +112,8 @@ Any future evolution toward a nominative cartography will be published as a date
 └── data/
     └── v1-2026-04-26/
         ├── PROVENANCE.txt       ← provenance and Zenodo DOI of the dataset
-        └── summary.csv          ← aggregated statistics per anonymous provider
+        ├── summary.csv          ← cartography: aggregated statistics per service
+        └── calibration.csv      ← calibration: instrument performance
 ```
 
 ## Posture
