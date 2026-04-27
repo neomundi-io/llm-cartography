@@ -1,0 +1,32 @@
+provider_id,n_observations,g_score_mean,flag_rate,composite,rating,tier,trend,color,trend_color,methodology_version
+P-002,780,0.9120,0.0372,0.9374,A,Production grade,n/a,#6F9E85,#CCCCCC,v1.0
+P-001,780,0.9091,0.0769,0.9161,BBB,Production grade,n/a,#75BC5B,#CCCCCC,v1.0
+P-004,781,0.9077,0.0896,0.9090,BBB,Production grade,n/a,#75BC5B,#CCCCCC,v1.0
+P-003,782,0.8998,0.1419,0.8789,BB,Governance-required,n/a,#8EB848,#CCCCCC,v1.0
+P-005,782,0.8886,0.2148,0.8369,B,Governance-required,n/a,#CE842D,#CCCCCC,v1.0
+
+Dataset v1-2026-04-26
+=====================
+
+DOI            : 10.5281/zenodo.19762753
+URL            : https://doi.org/10.5281/zenodo.19762753
+Date published : 2026-04-26
+Methodology    : v1.0 (Public Draft, révision 2026-04-27)
+
+Source files
+------------
+measurements.csv  SHA-256 b432985de9ba3faf8fc8d610b514ce8ba5a457e4eef2f25ab1f3da735053b71b
+                  (raw observations, deposited on Zenodo at the URL above)
+
+summary.csv       Aggregated per-provider statistics, recomputed from
+                  measurements.csv with methodology v1.0 (révision
+                  2026-04-27). Reflects the current methodology
+                  vocabulary (Production grade / Governance-required,
+                  trend, colorimetric convention). Numerical values
+                  unchanged from the original Zenodo deposit.
+
+Note
+----
+The Zenodo deposit is the immutable scientific record of this dataset.
+This GitHub repository carries the same data with the methodology's
+current display vocabulary applied. For citation, refer to the DOI.
