@@ -47,7 +47,7 @@ La tendance est `n/a` pour ce jeu de données car il s'agit d'une mesure synchro
 python methodology.py        # lance les tests de référence sur le jeu de données
 ```
 
-[Statistiques agrégées →](./data/v1-2026-04-26/summary.csv) · [Provenance et DOI →](./data/v1-2026-04-26/PROVENANCE.txt)
+[Statistiques agrégées →](./data/v1-2026-04-26/summary-v1) · [Provenance et DOI →](./data/v1-2026-04-26/PROVENANCE.txt)
 
 ## Calibration de l'instrument — v1-2026-04-26
 
