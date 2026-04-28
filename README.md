@@ -47,7 +47,7 @@ The trend is `n/a` for this dataset because it is a synchronous measurement, not
 python methodology.py        # runs reference tests on the dataset
 ```
 
-[Aggregated statistics →](./data/v1-2026-04-26/summary.csv) · [Provenance and DOI →](./data/v1-2026-04-26/PROVENANCE.txt)
+[Aggregated statistics →](https://github.com/neomundi-io/llm-cartography/blob/main/data/summary-v1) · [Provenance and DOI →](https://github.com/neomundi-io/llm-cartography/blob/main/data/PROVENANCE.txt)
 
 ## Instrument calibration — v1-2026-04-26
 
@@ -77,7 +77,7 @@ The metrics below do not characterize the measured LLMs: they characterize **the
 - **F1**: harmonic mean of precision and recall.
 - **Lift** = Precision / Provider hallucination rate: detection multiplier vs random.
 
-[Aggregated calibration metrics →](./data/v1-2026-04-26/calibration.csv)
+[Aggregated calibration metrics →](https://github.com/neomundi-io/llm-cartography/blob/main/data/calibration)
 
 ## Anonymization
 
