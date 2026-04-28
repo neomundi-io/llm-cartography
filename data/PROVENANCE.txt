@@ -1,0 +1,59 @@
+================================================================
+NeoMundi — LLM Cartography
+Dataset version: v1-2026-04-26
+================================================================
+
+Generated         : 2026-04-26
+Pipeline          : NeoMundi (Law E™ thermodynamic stability framework)
+Maintainer        : NeoMundi-Labs (https://github.com/neomundi-io)
+Scientific author : Favre-Lecca
+Reference         : Zenodo DOI 10.5281/zenodo.19385052
+
+----------------------------------------------------------------
+Dataset description
+----------------------------------------------------------------
+Per-run measurements of LLM generation stability across a battery
+of public benchmark questions, processed through the NeoMundi
+runtime measurement pipeline.
+
+Schema (CSV columns):
+  provider_id     Provider identifier (e.g. P-001)
+  question_id     Benchmark question identifier (e.g. TQ-0001)
+  decision        Pipeline decision (ALLOW | FLAG)
+  g_score         Stability score in [0, 1] (1 = stable)
+  regime          STABLE (>=0.75) | SIGNAL (>=0.50) | CRITICAL (<0.50)
+  dg_profile      Temporal drift profile (FLAT | RISING | FALLING | OSC)
+  dg_flagged      Drift flag (boolean)
+  dg_variation    Token-by-token variation magnitude
+  judge_verdict   External judge verdict (CORRECT | INCORRECT)
+  is_correct      Boolean projection of judge_verdict
+  response_hash   SHA-256 of the response (privacy by design)
+  cost_usd        Per-run cost in USD
+
+----------------------------------------------------------------
+Method
+----------------------------------------------------------------
+Stability is measured at runtime over the model's generation
+trajectory. Only anonymized JSON logs are produced (UUID,
+timestamp, stability_score, SHA-256 hash). No content is stored.
+
+Three FLAG triggers:
+  - stability_score < 0.50
+  - factual_hallucination_score >= 0.50
+  - semantic_risk >= 0.70
+
+----------------------------------------------------------------
+Reproducibility
+----------------------------------------------------------------
+Source CSV          : <FILENAME>
+SHA-256 (source)    : <HASH>
+Total runs          : <N>
+
+----------------------------------------------------------------
+License & contact
+----------------------------------------------------------------
+Data: CC-BY 4.0
+Code: see repository LICENSE
+Contact: contact@neomundi.io
+
+================================================================
