@@ -77,7 +77,7 @@ Les métriques ci-dessous ne caractérisent pas les LLM mesurés : elles caract�
 - **F1** : moyenne harmonique précision/recall.
 - **Lift** = Précision / Taux d'hallucination du provider : multiplicateur de détection vs hasard.
 
-[Métriques de calibration agrégées →](./data/v1-2026-04-26/calibration.csv)
+[Métriques de calibration agrégées →](https://github.com/neomundi-io/llm-cartography/blob/main/data/calibration)
 
 ## Anonymisation
 
